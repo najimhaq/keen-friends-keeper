@@ -1,7 +1,10 @@
+'use client';
+import { useFriends } from '@/context/FriendsContext';
 import Navbar from '@/layout/Navbar';
 import { FaPlus } from 'react-icons/fa';
 
 export default function Home() {
+  const { stats } = useFriends();
   return (
     <>
       <Navbar />
@@ -24,9 +27,9 @@ export default function Home() {
         {/* Stats Section */}
         <section className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
           {[
-            { value: 10, label: 'Total Friends' },
-            { value: 3, label: 'On Track' },
-            { value: 6, label: 'Need Attention' },
+            { value: stats.total, label: 'Total Friends' },
+            { value: stats.onTrack, label: 'On Track' },
+            { value: stats.overdue + stats.almostDue, label: 'Need Attention' },
             { value: 12, label: 'Interactions This Month' },
           ].map((item, idx) => (
             <div

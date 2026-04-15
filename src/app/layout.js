@@ -1,8 +1,10 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ToastContainer } from 'react-toastify';
-import { ContextProvider } from '@/context/ContextProvider';
 import Navbar from '@/layout/Navbar';
+import { FriendsProvider } from '@/context/FriendsContext';
+import EmptyState from '@/shared/EmptyState';
+import Footer from '@/layout/Footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,7 +25,34 @@ export const metadata = {
   description: '`Friends to keep close in your life by create next app`',
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/friends.json`,
+    {
+      cache: 'no-store',
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch friends data');
+  }
+
+  const result = await res.json();
+  const friends = result;
+  if (!Array.isArray(friends)) {
+      throw new Error('Invalid friends response format');
+    }
+
+    if (friends.length === 0) {
+      return (
+        <section className='bg-gray-50 px-4 py-40'>
+          <EmptyState
+            title='No Data Found'
+            message='There is nothing to show right now.'
+          />
+        </section>
+      );
+    }
   return (
     <html
       lang='en'
@@ -33,10 +62,11 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className='min-h-full flex flex-col' suppressHydrationWarning>
-        <ContextProvider>
+        <FriendsProvider initialFriends={friends}>
           <Navbar />
           <main> {children}</main>
-        </ContextProvider>
+          <Footer/>
+        </FriendsProvider>
         <ToastContainer position='top-right' autoClose={2000} />
       </body>
     </html>
