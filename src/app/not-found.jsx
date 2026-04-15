@@ -7,7 +7,7 @@ import { RiArrowLeftLine, RiHome5Line, RiContactsLine } from 'react-icons/ri';
 
 export default function NotFound() {
   return (
-    <section className='relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 px-6 py-12 text-white overflow-hidden'>
+    <section className='relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-teal-950 via-green-950 to-green-900 px-6 py-12 text-white overflow-hidden'>
       {/* Background effects */}
       <div className='absolute inset-0'>
         <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.25),transparent_40%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.25),transparent_40%)]' />
@@ -28,7 +28,7 @@ export default function NotFound() {
           className='w-full max-w-70 shrink-0'
         >
           <Image
-            src='/error3.png'
+            src='/error4.png'
             alt='404 not found illustration'
             width={300}
             height={300}

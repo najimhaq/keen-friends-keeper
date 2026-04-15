@@ -60,7 +60,7 @@ export default async function FriendDetailsPage({ params }) {
   const statusUI = getStatusUI(friend.status);
 
   return (
-    <section className='min-h-screen bg-[#f5f7f8] p-4 lg:pt-26 md:p-6'>
+    <section className='min-h-screen bg-[#f5f7f8] p-4 lg:mt-26 md:p-6'>
       <Link
         href='/friends'
         className='mb-6 inline-block text-sm text-green-600 hover:text-green-800'
