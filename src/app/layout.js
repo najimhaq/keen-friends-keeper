@@ -5,6 +5,7 @@ import Navbar from '@/layout/Navbar';
 import { FriendsProvider } from '@/context/FriendsContext';
 import EmptyState from '@/shared/EmptyState';
 import Footer from '@/layout/Footer';
+import friendsData from '@/data/friends.json';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -26,32 +27,21 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-
-  const res = await fetch(`${baseUrl}/data/friends.json`, {
-    cache: 'no-store',
-  });
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch friends data');
+  const friends = friendsData;
+  if (!Array.isArray(friends)) {
+    throw new Error('Invalid friends response format');
   }
 
-  const result = await res.json();
-  const friends = result;
-  if (!Array.isArray(friends)) {
-      throw new Error('Invalid friends response format');
-    }
-
-    if (friends.length === 0) {
-      return (
-        <section className='bg-gray-50 px-4 py-40'>
-          <EmptyState
-            title='No Data Found'
-            message='There is nothing to show right now.'
-          />
-        </section>
-      );
-    }
+  if (friends.length === 0) {
+    return (
+      <section className='bg-gray-50 px-4 py-40'>
+        <EmptyState
+          title='No Data Found'
+          message='There is nothing to show right now.'
+        />
+      </section>
+    );
+  }
   return (
     <html
       lang='en'
@@ -64,7 +54,7 @@ export default async function RootLayout({ children }) {
         <FriendsProvider initialFriends={friends}>
           <Navbar />
           <main> {children}</main>
-          <Footer/>
+          <Footer />
         </FriendsProvider>
         <ToastContainer position='top-right' autoClose={2000} />
       </body>

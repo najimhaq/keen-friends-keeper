@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FiArchive, FiBell } from 'react-icons/fi';
 import { LuTrash2, LuCalendar, LuMail } from 'react-icons/lu';
 import QuickCheckInActions from '@/components/QuickCheckInActions';
+import friendsData from '@/data/friends.json';
 
 function getStatusUI(status) {
   switch (status) {
@@ -41,15 +42,8 @@ function getStatusUI(status) {
 export default async function FriendDetailsPage({ params }) {
   const { friendId } = await params;
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 
-  const res = await fetch(`${baseUrl}/data/friends.json`, {
-    cache: 'no-store',
-  });
-
-  if (!res.ok) throw new Error('Failed to fetch friends data');
-
-  const friends = await res.json();
+  const friends = friendsData;
   const friend = friends.find((f) => String(f.id) === String(friendId));
 
   if (!friend) notFound();
