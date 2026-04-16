@@ -45,7 +45,7 @@ const Navbar = () => {
                 href={link.path}
                 className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? 'bg-gradient-to-r from-green-600 to-teal-500 text-white shadow-md'
+                    ? 'bg-linear-to-r from-green-600 to-teal-500 text-white shadow-md'
                     : 'text-gray-700 hover:text-green-700 hover:bg-gray-100'
                 }`}
               >
@@ -86,7 +86,7 @@ const Navbar = () => {
                 href={link.path}
                 className={`flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   isActive
-                    ? 'bg-gradient-to-r from-green-600 to-teal-500 text-white shadow-md'
+                    ? 'bg-linear-to-r from-green-600 to-teal-500 text-white shadow-md'
                     : 'text-gray-700 hover:text-green-700 hover:bg-gray-100'
                 }`}
                 onClick={() => setIsOpen(false)}

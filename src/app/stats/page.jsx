@@ -13,11 +13,10 @@ import {
 export default function StatsChart() {
   const { stats } = useFriends();
 
-  // loading
   if (!stats) {
     return (
-      <div className='bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-800'>
-        <div className='h-[400px] flex items-center justify-center'>
+      <div className='rounded-2xl border border-gray-200 bg-linear-to-br from-white to-gray-50 p-6 shadow-xl dark:border-gray-800 dark:from-gray-900 dark:to-gray-950'>
+        <div className='flex h-100 items-center justify-center'>
           <div className='text-gray-500'>Loading chart...</div>
         </div>
       </div>
@@ -32,15 +31,14 @@ export default function StatsChart() {
 
   const total = data.reduce((sum, d) => sum + d.value, 0);
 
-
   if (total === 0) {
     return (
-      <div className='bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-800'>
-        <div className='h-[400px] flex items-center justify-center'>
+      <div className='rounded-2xl border border-gray-200 bg-linear-to-br from-white to-gray-50 p-6 shadow-xl dark:border-gray-800 dark:from-gray-900 dark:to-gray-950'>
+        <div className='flex h-100 items-center justify-center'>
           <div className='text-center'>
-            <div className='text-4xl mb-2'>📊</div>
+            <div className='mb-2 text-4xl'>📊</div>
             <div className='text-gray-500'>No data available</div>
-            <div className='text-xs text-gray-400 mt-1'>
+            <div className='mt-1 text-xs text-gray-400'>
               Add some friends to see statistics
             </div>
           </div>
@@ -50,8 +48,8 @@ export default function StatsChart() {
   }
 
   return (
-    <div className='bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 rounded-2xl shadow-xl p-6 border border-gray-200 dark:border-gray-800'>
-      <div className='flex justify-between items-start mb-6'>
+    <div className='rounded-2xl border border-gray-200 bg-linear-to-br from-white to-gray-50 p-6 shadow-xl dark:border-gray-800 dark:from-gray-900 dark:to-gray-950'>
+      <div className='mb-6 flex items-start justify-between'>
         <div>
           <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>
             Status Overview
@@ -60,15 +58,22 @@ export default function StatsChart() {
             Distribution of friend statuses
           </p>
         </div>
-        <div className='bg-gray-100 dark:bg-gray-800 rounded-lg px-3 py-1'>
+
+        <div className='rounded-lg bg-gray-100 px-3 py-1 dark:bg-gray-800'>
           <span className='text-xs font-medium text-gray-600 dark:text-gray-400'>
             Total: {stats.total || 0}
           </span>
         </div>
       </div>
 
-      <div className='w-full h-[400px]'>
-        <ResponsiveContainer width='100%' height='100%'>
+      <div className='h-100 w-full min-h-100'>
+        <ResponsiveContainer
+          width='100%'
+          height='100%'
+          minWidth={0}
+          minHeight={300}
+          initialDimension={{ width: 400, height: 400 }}
+        >
           <PieChart>
             <Pie
               data={data}
@@ -106,11 +111,11 @@ export default function StatsChart() {
         </ResponsiveContainer>
       </div>
 
-      <div className='mt-6 grid grid-cols-3 gap-3 pt-4 border-t border-gray-200 dark:border-gray-800'>
+      <div className='mt-6 grid grid-cols-3 gap-3 border-t border-gray-200 pt-4 dark:border-gray-800'>
         {data.map((item) => (
           <div key={item.name} className='text-center'>
             <div
-              className='w-2 h-2 rounded-full mx-auto mb-1'
+              className='mx-auto mb-1 h-2 w-2 rounded-full'
               style={{ backgroundColor: item.color }}
             />
             <div className='text-xs font-semibold text-gray-900 dark:text-white'>

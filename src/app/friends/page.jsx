@@ -12,17 +12,17 @@ export default function Friends() {
       <h1 className='text-3xl font-bold text-gray-900 mb-8'>My Friends</h1>
 
       {/* Stats badges */}
-      <div className='flex gap-4 mb-8 text-sm'>
-        <span className='bg-red-100 text-red-700 px-3 py-1 rounded-full'>
+      <div className='grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 text-sm'>
+        <span className='bg-red-100 text-red-700 px-3 py-1 rounded-full text-center'>
           Overdue: {stats.overdue}
         </span>
-        <span className='bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full'>
+        <span className='bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-center'>
           Almost Due: {stats.almostDue}
         </span>
-        <span className='bg-green-100 text-green-700 px-3 py-1 rounded-full'>
+        <span className='bg-green-100 text-green-700 px-3 py-1 rounded-full text-center'>
           On Track: {stats.onTrack}
         </span>
-        <span className='bg-gray-100 text-gray-700 px-3 py-1 rounded-full'>
+        <span className='bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-center'>
           Total: {stats.total}
         </span>
       </div>
