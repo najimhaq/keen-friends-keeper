@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FiVideo } from 'react-icons/fi';
 import { LuPhoneCall } from 'react-icons/lu';
 import { MdOutlineMessage } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 const QuickCheckInActions = ({ friend }) => {
   const router = useRouter();
@@ -17,7 +18,13 @@ const QuickCheckInActions = ({ friend }) => {
       type,
       label,
     });
-    router.push('/timeline');
+
+    // Toast notification
+    toast.success(`${friend.name} - ${label} added to timeline!`);
+
+    setTimeout(() => {
+      router.push('/timeline');
+    }, 1000);
   };
 
   return (
