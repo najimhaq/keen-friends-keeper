@@ -26,9 +26,11 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/data/friends.json`
-  );
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+
+  const res = await fetch(`${baseUrl}/data/friends.json`, {
+    cache: 'no-store',
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch friends data');
