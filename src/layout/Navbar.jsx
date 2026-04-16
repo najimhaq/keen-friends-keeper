@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <header className='fixed top-0 left-0 z-50 w-full border-b border-gray-200 bg-white/70 backdrop-blur-md'>
-      <nav className='container mx-auto max-w-7xl px-6 py-4 flex items-center justify-between'>
+      <nav className='container mx-auto max-w-7xl px-6 py-6 flex items-center justify-between'>
         {/* Logo */}
         <Link href='/' className='flex items-center gap-2'>
           <h2 className='text-2xl font-bold text-gray-900'>
