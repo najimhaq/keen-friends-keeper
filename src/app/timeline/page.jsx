@@ -41,16 +41,16 @@ export default function TimelinePage() {
   };
 
   return (
-    <section className='min-h-screen bg-[#f5f7f8] p-4 pt-24 md:p-6'>
+    <section className='min-h-screen bg-[#f5f7f8] p-4 lg:pt-28 md:p-6'>
       <div className='mx-auto max-w-4xl'>
-        <div className='rounded-2xl border border-sky-300/80 bg-white'>
+        <div className='rounded-2xl border border-green-300/80 bg-white'>
           <div className='border-b border-sky-200/70 px-4 py-4 md:px-5'>
             <h1 className='text-3xl font-extrabold tracking-tight text-slate-900'>
               Timeline
             </h1>
 
             <div className='mt-4 flex flex-col gap-3 sm:flex-row sm:items-center'>
-              <div className='relative w-full sm:max-w-[220px]'>
+              <div className='relative w-full sm:max-w-55'>
                 <select
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
@@ -64,7 +64,7 @@ export default function TimelinePage() {
                 <FiChevronDown className='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400' />
               </div>
 
-              <div className='relative w-full sm:max-w-[180px]'>
+              <div className='relative w-full sm:max-w-45'>
                 <select
                   value={sortOrder}
                   onChange={(e) => setSortOrder(e.target.value)}
@@ -80,7 +80,7 @@ export default function TimelinePage() {
 
           <div className='divide-y divide-slate-100'>
             {filteredAndSortedTimeline.length === 0 ? (
-              <div className='px-5 py-6 text-sm text-slate-500'>
+              <div className='px-5 py-6 text-lg font-medium text-green-700 text-center'>
                 No timeline events yet.
               </div>
             ) : (
@@ -89,7 +89,7 @@ export default function TimelinePage() {
                   key={item.id}
                   className='flex items-start gap-3 px-4 py-3 md:px-5'
                 >
-                  <div className='mt-0.5'>{getIcon(item.type)}</div>
+                  <div className='mt-2.5'>{getIcon(item.type)}</div>
 
                   <div className='min-w-0'>
                     <div className='flex flex-wrap items-baseline gap-x-2 gap-y-0.5'>
