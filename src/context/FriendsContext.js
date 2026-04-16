@@ -1,13 +1,27 @@
 'use client';
 
 import { differenceInDays } from 'date-fns';
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const FriendsContext = createContext(null);
 
 export function FriendsProvider({ children, initialFriends = [] }) {
   const [friends, setFriends] = useState(initialFriends);
 
+   const [timelineEvents, setTimelineEvents] = useState([])
+
+  const addTimelineEvent = ({ friendId, friendName, type, label }) => {
+    const newEvent = {
+      id: crypto.randomUUID(),
+      friendId,
+      friendName,
+      type,
+      label,
+      date: new Date().toISOString(),
+    };
+
+    setTimelineEvents((prev) => [newEvent, ...prev]);
+  };
 
   const stats = {
     overdue: friends.filter((f) => f.status === 'overdue').length,
@@ -16,7 +30,6 @@ export function FriendsProvider({ children, initialFriends = [] }) {
     total: friends.length,
   };
 
-  // days left
   const friendsWithDaysLeft = friends.map((friend) => ({
     ...friend,
     daysLeft: Math.max(
@@ -25,10 +38,16 @@ export function FriendsProvider({ children, initialFriends = [] }) {
     ),
   }));
 
-
   return (
     <FriendsContext.Provider
-      value={{ friends: friendsWithDaysLeft, setFriends, stats }}
+      value={{
+        friends: friendsWithDaysLeft,
+        setFriends,
+        stats,
+        timelineEvents,
+        setTimelineEvents,
+        addTimelineEvent,
+      }}
     >
       {children}
     </FriendsContext.Provider>
@@ -37,6 +56,10 @@ export function FriendsProvider({ children, initialFriends = [] }) {
 
 export function useFriends() {
   const ctx = useContext(FriendsContext);
-  if (!ctx) throw new Error('useFriends must be used within FriendsProvider');
+
+  if (!ctx) {
+    throw new Error('useFriends must be used within FriendsProvider');
+  }
+
   return ctx;
 }

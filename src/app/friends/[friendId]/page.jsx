@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FiArchive, FiBell, FiVideo } from 'react-icons/fi';
-import { MdOutlineMessage } from 'react-icons/md';
-import { LuPhoneCall, LuTrash2, LuCalendar, LuMail } from 'react-icons/lu';
+import { FiArchive, FiBell } from 'react-icons/fi';
+import { LuTrash2, LuCalendar, LuMail } from 'react-icons/lu';
+import QuickCheckInActions from '@/components/QuickCheckInActions';
 
 function getStatusUI(status) {
   switch (status) {
@@ -71,10 +71,10 @@ export default async function FriendDetailsPage({ params }) {
       <div className='grid grid-cols-1 gap-4 lg:grid-cols-12'>
         <aside className='space-y-3 lg:col-span-4'>
           <div className='overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-md shadow-slate-200/60'>
-            <div className={`h-[3px] w-full ${statusUI.bar}`} />
+            <div className={`h-0.75 w-full ${statusUI.bar}`} />
 
             <div className='flex flex-col items-center gap-2.5 px-6 pb-5 pt-6'>
-              <div className='relative h-[72px] w-[72px]'>
+              <div className='relative h-18 w-18'>
                 <Image
                   src={
                     friend.picture ||
@@ -220,22 +220,7 @@ export default async function FriendDetailsPage({ params }) {
               Quick check-in
             </h3>
 
-            <div className='grid grid-cols-1 gap-2.5 sm:grid-cols-3'>
-              <button className='flex flex-col items-center gap-2 rounded-2xl border border-slate-200 cursor-pointer bg-white py-5 text-xs font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50'>
-                <LuPhoneCall className='text-xl text-teal-700' />
-                Call
-              </button>
-
-              <button className='flex flex-col items-center gap-2 rounded-2xl border border-slate-200 cursor-pointer bg-white py-5 text-xs font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50'>
-                <MdOutlineMessage className='text-xl text-blue-700' />
-                Text
-              </button>
-
-              <button className='flex flex-col items-center gap-2 rounded-2xl border border-slate-200 cursor-pointer bg-white py-5 text-xs font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50'>
-                <FiVideo className='text-xl text-purple-700' />
-                Video
-              </button>
-            </div>
+            <QuickCheckInActions friend={friend}/>
           </div>
         </div>
       </div>

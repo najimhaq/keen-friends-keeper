@@ -17,7 +17,6 @@ const navLinks = [
   { name: 'Friends', path: '/friends', icon: FaUserFriends },
   { name: 'Timeline', path: '/timeline', icon: FaRegCalendarAlt },
   { name: 'Stats', path: '/stats', icon: FaChartBar },
-  { name: 'Dashboard', path: '/dashboard', icon: FaTachometerAlt },
 ];
 
 const Navbar = () => {
