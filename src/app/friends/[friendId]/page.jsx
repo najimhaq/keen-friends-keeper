@@ -42,8 +42,7 @@ export default async function FriendDetailsPage({ params }) {
   const { friendId } = await params;
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/friends.json`,
-    { cache: 'no-store' }
+    `${process.env.NEXT_PUBLIC_BASE_URL}/data/friends.json`
   );
 
   if (!res.ok) throw new Error('Failed to fetch friends data');
@@ -220,7 +219,7 @@ export default async function FriendDetailsPage({ params }) {
               Quick check-in
             </h3>
 
-            <QuickCheckInActions friend={friend}/>
+            <QuickCheckInActions friend={friend} />
           </div>
         </div>
       </div>
