@@ -1,10 +1,10 @@
-# Friend Tracker
+# KeenKeeper Friend Tracker
 
 A clean and modern relationship management app built with Next.js that helps you keep track of friends, contact frequency, follow-up status, and interaction history.
 
 ## Overview
 
-Friend Tracker helps you stay intentional about your relationships. You can monitor which friends are overdue for contact, who is almost due, and who is still on track. The app also includes a timeline system so every call, text, or video action can be logged and reviewed later.
+KeenKeeper Friend Tracker helps you stay intentional about your relationships. You can monitor which friends are overdue for contact, who is almost due, and who is still on track. The app also includes a timeline system so every call, text, or video action can be logged and reviewed later.
 
 ## Features
 
@@ -82,25 +82,18 @@ src/
     ├── layout.jsx
     ├── not-found.jsx
     ├── page.jsx
-
 components/
 ├── QuickCheckInActions.jsx
-├── StatsChart.jsx
-
 context/
 ├── FriendsContext.jsx
-
 data/
 ├── friends.json
-
 hook/
 ├── useActivePath.js
-
 layout/
 ├── Banner.js
 ├── Footer.js
 ├── Navbar.js
-
 shared/
 ├── EmptyState.jsx
 ├── ErrorState.jsx
