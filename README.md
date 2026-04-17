@@ -188,6 +188,8 @@ This project is open-source and available under the **MIT License**.
 
 ## Author
 
+**Git**
+https://github.com/najimhaq/keen-friends-keeper
+
 **Live Link**
-
-
+https://keen-friends-keeper.vercel.app/

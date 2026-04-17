@@ -118,10 +118,10 @@ export default function StatsChart() {
               className='mx-auto mb-1 h-2 w-2 rounded-full'
               style={{ backgroundColor: item.color }}
             />
-            <div className='text-xs font-semibold text-gray-900 dark:text-white'>
+            <div className='text-lg font-semibold text-gray-900 dark:text-white'>
               {item.value}
             </div>
-            <div className='text-[10px] text-gray-500 dark:text-gray-400'>
+            <div className='text-lg text-gray-500 dark:text-gray-400'>
               {item.name}
             </div>
           </div>
