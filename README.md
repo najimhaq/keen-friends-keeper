@@ -68,14 +68,20 @@ Example event structure:
 ## Project Structure
 
 ```bash
-app/
-├── friends/
-│   └── [friendId]/
-│       └── page.jsx
-├── timeline/
-│   └── page.jsx
-├── layout.jsx
-├── page.jsx
+src/
+    app/
+    ├── friends/
+    │   └── [friendId]/
+    │       └── loading.jsx
+            └── page.jsx
+    ├── stats/
+    │   └── page.jsx
+    ├── timeline/
+    │   └── page.jsx
+    ├── global.css
+    ├── layout.jsx
+    ├── not-found.jsx
+    ├── page.jsx
 
 components/
 ├── QuickCheckInActions.jsx
@@ -84,8 +90,21 @@ components/
 context/
 ├── FriendsContext.jsx
 
-public/
+data/
 ├── friends.json
+
+hook/
+├── useActivePath.js
+
+layout/
+├── Banner.js
+├── Footer.js
+├── Navbar.js
+
+shared/
+├── EmptyState.jsx
+├── ErrorState.jsx
+
 ```
 
 ## Installation
@@ -93,13 +112,13 @@ public/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/friend-tracker.git
+git@github.com:najimhaq/keen-friends-keeper.git
 ```
 
 Go to the project folder:
 
 ```bash
-cd friend-tracker
+cd KeenKeeper-A7B13
 ```
 
 Install dependencies:
