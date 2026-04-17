@@ -8,7 +8,7 @@ const FriendsContext = createContext(null);
 export function FriendsProvider({ children, initialFriends = [] }) {
   const [friends, setFriends] = useState(initialFriends);
 
-   const [timelineEvents, setTimelineEvents] = useState([])
+  const [timelineEvents, setTimelineEvents] = useState([]);
 
   const addTimelineEvent = ({ friendId, friendName, type, label }) => {
     const newEvent = {
@@ -37,6 +37,7 @@ export function FriendsProvider({ children, initialFriends = [] }) {
       differenceInDays(new Date(friend.next_due_date), new Date())
     ),
   }));
+ 
 
   return (
     <FriendsContext.Provider

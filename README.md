@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Friend Tracker
 
-## Getting Started
+A clean and modern relationship management app built with Next.js that helps you keep track of friends, contact frequency, follow-up status, and interaction history.
 
-First, run the development server:
+## Overview
+
+Friend Tracker helps you stay intentional about your relationships. You can monitor which friends are overdue for contact, who is almost due, and who is still on track. The app also includes a timeline system so every call, text, or video action can be logged and reviewed later.
+
+## Features
+
+- Track friend status: Overdue, Almost Due, and On Track
+- View detailed friend profiles
+- Quick check-in actions: Call, Text, and Video
+- Automatically store interaction history in a timeline
+- Filter and sort timeline entries
+- Visual status analytics with charts
+- Responsive and clean UI
+- Context API based state management
+
+## Tech Stack
+
+- **Next.js**
+- **React**
+- **Tailwind CSS**
+- **Context API**
+- **Recharts**
+- **date-fns**
+- **react-icons**
+
+## Screens
+
+### Friend Details
+- View profile image, email, bio, and current relationship status
+- See goal days, next due date, and days since contact
+- Trigger quick interaction actions
+
+### Timeline
+- Displays logged interaction history
+- Supports filtering by type: Call, Text, Video
+- Supports sorting by latest or oldest date
+
+### Stats
+- Pie chart overview of status distribution
+- Quick numeric summary of relationship health
+
+## How It Works
+
+When you click one of the quick action buttons on the friend details page:
+
+- A new event object is created
+- The event is added to `timelineEvents`
+- The timeline page reads that data and displays it
+- The list can then be filtered and sorted
+
+Example event structure:
+
+```js
+{
+  id: Date.now(),
+  friendId: friend.id,
+  friendName: friend.name,
+  type: 'call',
+  label: 'Call',
+  date: new Date().toISOString(),
+}
+```
+
+## Project Structure
+
+```bash
+app/
+├── friends/
+│   └── [friendId]/
+│       └── page.jsx
+├── timeline/
+│   └── page.jsx
+├── layout.jsx
+├── page.jsx
+
+components/
+├── QuickCheckInActions.jsx
+├── StatsChart.jsx
+
+context/
+├── FriendsContext.jsx
+
+public/
+├── friends.json
+```
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/friend-tracker.git
+```
+
+Go to the project folder:
+
+```bash
+cd friend-tracker
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in browser:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Usage
 
-## Learn More
+1. Open the app
+2. Browse the friend list
+3. Click a friend to open the details page
+4. Use **Call**, **Text**, or **Video**
+5. Go to the **Timeline** page
+6. Filter and sort interaction history
+7. Review chart-based status overview
 
-To learn more about Next.js, take a look at the following resources:
+## State Management
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The app uses **Context API** for shared state.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Main context values include:
 
-## Deploy on Vercel
+- `friends`
+- `setFriends`
+- `stats`
+- `timelineEvents`
+- `setTimelineEvents`
+- `addTimelineEvent`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This makes it easy to update interaction logs from one page and display them in another.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## UI Highlights
+
+- Soft card-based layout
+- Modern spacing and typography
+- Timeline list with sort and filter
+- Responsive chart section
+- Status badges and progress indicators
+
+## Future Improvements
+
+- Persist data in a database
+- Add authentication
+- Add notes for each interaction
+- Add reminders and notifications
+- Add search and advanced filtering
+- Add edit/delete for timeline entries
+
+## Challenges Solved
+
+- Shared state across multiple pages using Context API
+- Timeline event logging from action buttons
+- Sorting and filtering dynamic timeline data
+- Fixing hydration issues in client-rendered pages
+- Handling Recharts rendering safely in Next.js
+
+## Contributing
+
+Contributions are welcome.
+
+If you want to improve this project:
+
+1. Fork the repo
+2. Create a new branch
+3. Make your changes
+4. Commit your work
+5. Open a pull request
+
+## License
+
+This project is open-source and available under the **MIT License**.
+
+## Author
+
+**Live Link**
+
+

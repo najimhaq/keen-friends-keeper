@@ -1,5 +1,7 @@
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import fs from 'fs';
+import path from 'path';
+import { Geist, Geist_Mono } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 import Navbar from '@/layout/Navbar';
 import { FriendsProvider } from '@/context/FriendsContext';
@@ -18,7 +20,7 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
   display: 'swap',
-  //   weight: ['400', '500', '700'],
+
 });
 
 export const metadata = {
@@ -26,8 +28,15 @@ export const metadata = {
   description: '`Friends to keep close in your life by create next app`',
 };
 
-export default async function RootLayout({ children }) {
-  const friends = friendsData;
+function getFriendsData() {
+  const filePath = path.join(process.cwd(), 'src', 'data', 'friends.json');
+  const jsonData = fs.readFileSync(filePath, 'utf8');
+  return JSON.parse(jsonData);
+}
+
+
+export default function RootLayout({ children }) {
+ const friends = getFriendsData();
   if (!Array.isArray(friends)) {
     throw new Error('Invalid friends response format');
   }

@@ -5,6 +5,8 @@ import { FiChevronDown, FiVideo } from 'react-icons/fi';
 import { MdOutlineMessage } from 'react-icons/md';
 import { LuPhoneCall } from 'react-icons/lu';
 import { useFriends } from '@/context/FriendsContext';
+import Link from 'next/link';
+import EmptyTimeline from './EmptyTimeline';
 
 export default function TimelinePage() {
   const { timelineEvents } = useFriends();
@@ -80,9 +82,7 @@ export default function TimelinePage() {
 
           <div className='divide-y divide-slate-100'>
             {filteredAndSortedTimeline.length === 0 ? (
-              <div className='px-5 py-6 text-lg font-medium text-green-700 text-center'>
-                No timeline events yet.
-              </div>
+              <EmptyTimeline />
             ) : (
               filteredAndSortedTimeline.map((item) => (
                 <div

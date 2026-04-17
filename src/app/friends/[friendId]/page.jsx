@@ -1,10 +1,11 @@
-import { notFound } from 'next/navigation';
+'use client';
+import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiArchive, FiBell } from 'react-icons/fi';
 import { LuTrash2, LuCalendar, LuMail } from 'react-icons/lu';
 import QuickCheckInActions from '@/components/QuickCheckInActions';
-import friendsData from '@/data/friends.json';
+import { useFriends } from '@/context/FriendsContext';
 
 function getStatusUI(status) {
   switch (status) {
@@ -39,14 +40,26 @@ function getStatusUI(status) {
   }
 }
 
-export default async function FriendDetailsPage({ params }) {
-  const { friendId } = await params;
+export default function FriendDetailsPage() {
+  const params = useParams();
+  const { friends } = useFriends();
+  const friendId = params.friendId;
 
+  const friend = friends?.find((f) => String(f.id) === String(friendId));
 
-  const friends = friendsData;
-  const friend = friends.find((f) => String(f.id) === String(friendId));
+  if (!friend) {
+    return (
+      <div className='min-h-screen bg-[#f5f7f8] p-4 lg:mt-26 md:p-6'>
+        <div className='flex items-center justify-center h-64'>
+          <div className='text-center'>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-teal-700 mx-auto'></div>
 
-  if (!friend) notFound();
+            <p className='mt-4 text-slate-500'>Loading friend details...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const daysSinceContact = friend.days_since_contact ?? 62;
   const goalDays = friend.goal ?? 30;
